@@ -1,51 +1,34 @@
-import React, { ReactNode } from 'react';
-import {
-  Button as MuiButton,
-  CircularProgress,
-  IconButton,
-} from '@mui/material';
+import React from 'react';
+import { Box, Button, IconButton, ButtonProps } from '@mui/material';
 import Tooltip from '@mui/material/Tooltip';
 
-type ButtonProps = {
+type CustomButtonProps = {
   isIconButton?: boolean;
-  isLoading?: boolean;
-  text?: string;
-  variant?: 'text' | 'outlined' | 'contained';
-  handleClick?: () => void;
   tooltip?: string;
   children?: React.ReactNode;
-  styles?: React.CSSProperties;
-};
+} & ButtonProps;
 
-export default function Button({
-  text,
-  variant = 'contained',
-  handleClick,
+export default function CustomButton({
   tooltip,
-  isLoading,
   isIconButton,
   children,
-  styles,
-}: ButtonProps) {
+  ...rest
+}: CustomButtonProps) {
   return (
     <Tooltip
       title={tooltip || ''}
       disableFocusListener={!tooltip}
       disableHoverListener={!tooltip}
     >
-      {isIconButton ? (
-        <IconButton onClick={handleClick} sx={{ ...styles }}>
-          {children}
-        </IconButton>
-      ) : (
-        <MuiButton variant={variant} onClick={handleClick} sx={{ ...styles }}>
-          {isLoading ? (
-            <CircularProgress color="secondary" size={'1.5rem'} />
-          ) : (
-            text
-          )}
-        </MuiButton>
-      )}
+      <Box sx={{ alignSelf: 'center' }}>
+        {isIconButton ? (
+          <IconButton {...rest}>{children}</IconButton>
+        ) : (
+          <Button variant="contained" {...rest}>
+            {children}
+          </Button>
+        )}
+      </Box>
     </Tooltip>
   );
 }

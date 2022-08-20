@@ -1,10 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import {
   InputBase,
   InputLabel,
   FormControl,
   FormHelperText,
+  InputBaseProps,
+  useTheme,
 } from '@mui/material';
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
@@ -17,8 +19,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
     border: '1px solid #ced4da',
     fontSize: 16,
-    width: 'auto',
-    padding: '10px 12px',
+    padding: '7px 10px',
     transition: theme.transitions.create([
       'border-color',
       'background-color',
@@ -29,52 +30,30 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
       borderColor: theme.palette.primary.main,
     },
   },
-}));
+})) as typeof InputBase;
 
-type InputProps = {
-  name: string;
+type CustomInputProps = {
+  id?: string;
   label: string;
-  value: string;
-  error?: string;
-  inputType?: 'password' | 'number' | 'text';
-  rows?: number;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  disabled?: boolean;
-  readOnly?: boolean;
-  styles?: React.CSSProperties;
-};
+  helperText?: string;
+  error?: boolean;
+} & InputBaseProps;
 
-export default function CustomizedInputs({
-  name,
+export default function CustomInput({
+  id = 'mui-input',
   label,
-  value,
-  error,
-  inputType = 'text',
-  rows = 1,
-  handleChange,
-  disabled,
-  readOnly,
-  styles,
-}: InputProps) {
+  helperText,
+  error = false,
+  ...rest
+}: CustomInputProps) {
+  const theme = useTheme;
   return (
-    <FormControl variant="standard" sx={{ ...styles }}>
-      <InputLabel shrink htmlFor={name}>
+    <FormControl variant="standard">
+      <InputLabel shrink error={error} htmlFor={id}>
         {label}
       </InputLabel>
-      <BootstrapInput
-        name={name}
-        value={value}
-        id="bootstrap-input"
-        type={inputType}
-        multiline={rows > 1}
-        rows={rows}
-        onChange={handleChange}
-        inputProps={{ readOnly }}
-        disabled={disabled}
-      />
-      <FormHelperText id="component-helper-text" sx={{ color: 'error.main' }}>
-        {error}
-      </FormHelperText>
+      <BootstrapInput id={id} {...rest} />
+      <FormHelperText error={error}>{helperText}</FormHelperText>
     </FormControl>
   );
 }
