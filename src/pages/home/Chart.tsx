@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import {
   LineChart,
@@ -8,6 +8,7 @@ import {
   Label,
   ResponsiveContainer,
 } from 'recharts';
+
 import Title from '../../components/common/Title';
 import Sales from '../../sample_data/Sales.json';
 
@@ -15,7 +16,7 @@ export default function Chart() {
   const theme = useTheme();
 
   return (
-    <React.Fragment>
+    <>
       <Title>Today</Title>
       <ResponsiveContainer>
         <LineChart
@@ -57,6 +58,6 @@ export default function Chart() {
           />
         </LineChart>
       </ResponsiveContainer>
-    </React.Fragment>
+    </>
   );
 }

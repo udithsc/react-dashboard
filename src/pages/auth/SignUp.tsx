@@ -1,16 +1,17 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import React from 'react';
+import {
+  Avatar,
+  Button,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Link,
+  Grid,
+  Box,
+  Typography,
+  Container,
+} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import Copyright from '../../components/common/Copyright';
 
 export default function SignUp() {
@@ -25,7 +26,6 @@ export default function SignUp() {
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <Box
         sx={{
           marginTop: 8,
@@ -47,7 +47,6 @@ export default function SignUp() {
                 autoComplete="given-name"
                 name="firstName"
                 required
-                fullWidth
                 id="firstName"
                 label="First Name"
                 autoFocus
@@ -56,7 +55,6 @@ export default function SignUp() {
             <Grid item xs={12} sm={6}>
               <TextField
                 required
-                fullWidth
                 id="lastName"
                 label="Last Name"
                 name="lastName"
@@ -66,7 +64,6 @@ export default function SignUp() {
             <Grid item xs={12}>
               <TextField
                 required
-                fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
@@ -76,7 +73,6 @@ export default function SignUp() {
             <Grid item xs={12}>
               <TextField
                 required
-                fullWidth
                 name="password"
                 label="Password"
                 type="password"
@@ -101,7 +97,7 @@ export default function SignUp() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/signin" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>

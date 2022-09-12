@@ -1,13 +1,15 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import React from 'react';
+import {
+  Avatar,
+  Button,
+  TextField,
+  Link,
+  Grid,
+  Box,
+  Typography,
+  Container,
+} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import Copyright from '../../components/common/Copyright';
 import { useTheme } from '@mui/material/styles';
 
@@ -41,7 +43,6 @@ export default function ForgotPassword() {
           <TextField
             margin="normal"
             required
-            fullWidth
             id="email"
             label="Email Address"
             name="email"
@@ -59,7 +60,7 @@ export default function ForgotPassword() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link href="/signin" variant="body2">
                 Sign In?
               </Link>
             </Grid>

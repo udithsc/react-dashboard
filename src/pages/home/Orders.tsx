@@ -1,10 +1,12 @@
-import * as React from 'react';
-import Link from '@mui/material/Link';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
+import React from 'react';
+import {
+  Link,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from '@mui/material';
 import Title from '../../components/common/Title';
 import TotalOrders from '../../sample_data/Orders.json';
 
@@ -14,7 +16,7 @@ function preventDefault(event: React.MouseEvent) {
 
 export default function Orders() {
   return (
-    <React.Fragment>
+    <>
       <Title>Recent Orders</Title>
       <Table size="small">
         <TableHead>
@@ -41,6 +43,6 @@ export default function Orders() {
       <Link className="mt-6" color="primary" href="#" onClick={preventDefault}>
         See more orders
       </Link>
-    </React.Fragment>
+    </>
   );
 }

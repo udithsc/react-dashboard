@@ -1,11 +1,13 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
+import React from 'react';
+import {
+  Avatar,
+  Button,
+  TextField,
+  Box,
+  Typography,
+  Container,
+} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import Copyright from '../../components/common/Copyright';
 import { useTheme } from '@mui/material/styles';
 
@@ -39,7 +41,6 @@ export default function ResetPassword() {
           <TextField
             margin="normal"
             required
-            fullWidth
             id="email"
             label="New Password"
             name="email"
@@ -49,19 +50,13 @@ export default function ResetPassword() {
           <TextField
             margin="normal"
             required
-            fullWidth
             name="password"
             label="Confirm New Password"
             type="password"
             id="password"
             autoComplete="current-password"
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            className="mt-4 mb-4"
-          >
+          <Button type="submit" variant="contained" className="mt-4 mb-4">
             Reset Password
           </Button>
         </Box>
