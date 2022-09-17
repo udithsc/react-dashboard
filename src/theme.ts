@@ -28,6 +28,7 @@ const themeOptions = {
     MuiButtonBase: {
       defaultProps: {
         disableRipple: true,
+        variant: 'contained',
       },
     },
     MuiInputLabel: {

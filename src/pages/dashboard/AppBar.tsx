@@ -3,8 +3,10 @@ import { styled } from '@mui/material/styles';
 import { Toolbar, Typography, IconButton, Badge } from '@mui/material';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import MenuIcon from '@mui/icons-material/Menu';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import { FiBell, FiUser } from 'react-icons/fi';
+
 import { DRAWER_WIDTH } from '../../constants/template';
+import { useNavigate } from 'react-router-dom';
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -35,6 +37,8 @@ function AppBar({
     }),
   }));
 
+  const navigate = useNavigate();
+
   return (
     <AppBar position="absolute" open={open}>
       <Toolbar className="pr-6">
@@ -58,8 +62,17 @@ function AppBar({
         </Typography>
         <IconButton color="inherit">
           <Badge badgeContent={4} color="secondary">
-            <NotificationsIcon />
+            <FiBell />
           </Badge>
+        </IconButton>
+        <IconButton
+          color="inherit"
+          sx={{ backgroundColor: 'primary.light', ml: 2 }}
+          onClick={() => {
+            navigate('signin');
+          }}
+        >
+          <FiUser />
         </IconButton>
       </Toolbar>
     </AppBar>

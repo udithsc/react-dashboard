@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
+    "@hookform/resolvers": "^2.9.8",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "latest",
     "@reduxjs/toolkit": "^1.8.5",
@@ -27,7 +28,8 @@
     "react-scripts": "latest",
     "recharts": "^2.1.13",
     "tailwindcss": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",

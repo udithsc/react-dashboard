@@ -13,15 +13,37 @@ import {
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Copyright from '../../components/common/Copyright';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+interface IFormInput {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+}
+
+const schema = yup
+  .object({
+    firstName: yup.string().min(3).max(16).required(),
+    lastName: yup.string().min(3).max(16).required(),
+    email: yup.string().email().required(),
+    password: yup.string().min(6).max(16).required(),
+  })
+  .required();
 
 export default function SignUp() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    console.log(data);
   };
 
   return (
@@ -40,44 +62,73 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <Box
+          component="form"
+          noValidate
+          onSubmit={handleSubmit(onSubmit)}
+          sx={{ mt: 3 }}
+        >
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="given-name"
+              <Controller
                 name="firstName"
-                required
-                id="firstName"
-                label="First Name"
-                autoFocus
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="First Name"
+                    autoComplete="given-name"
+                    autoFocus
+                    required
+                  />
+                )}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                id="lastName"
-                label="Last Name"
+              <Controller
                 name="lastName"
-                autoComplete="family-name"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Last Name"
+                    autoComplete="family-name"
+                    required
+                  />
+                )}
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                required
-                id="email"
-                label="Email Address"
+              <Controller
                 name="email"
-                autoComplete="email"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Email Address"
+                    autoComplete="email"
+                    required
+                  />
+                )}
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                required
+              <Controller
                 name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="new-password"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Password"
+                    type="password"
+                    autoComplete="current-password"
+                    required
+                  />
+                )}
               />
             </Grid>
             <Grid item xs={12}>

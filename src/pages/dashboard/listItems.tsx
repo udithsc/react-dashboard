@@ -20,7 +20,7 @@ const MainMenus = [
   {
     label: 'Dashboard',
     icon: <FiGrid />,
-    route: '/dashboard',
+    route: '/',
   },
   {
     label: 'Users',

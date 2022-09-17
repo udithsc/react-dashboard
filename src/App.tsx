@@ -8,13 +8,15 @@ import SignIn from './pages/auth/SignIn';
 import SignUp from './pages/auth/SignUp';
 import Users from './pages/users/Users';
 import NotFound from './pages/dashboard/NotFound';
+import Peoples from './pages/users/Peoples';
 
 export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Dashboard />}>
         <Route index element={<Home />} />
-        <Route path="/users" element={<Users />}></Route>
+        <Route path="/users" element={<Peoples />}></Route>
+        {/* <Route path="/users" element={<Users />}></Route> */}
         <Route path="/*" element={<NotFound />} />
       </Route>
       <Route path="/resetpassword" element={<ResetPassword />} />

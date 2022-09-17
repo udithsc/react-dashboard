@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography, Link } from '@mui/material';
+import { COMPANY_NAME, COMPANY_WEBSITE } from '../../constants/template';
 
 function Copyright() {
   return (
@@ -10,8 +11,8 @@ function Copyright() {
       className="pt-8"
     >
       {'Copyright © '}
-      <Link color="inherit" href="#">
-        Your Website
+      <Link color="inherit" href={COMPANY_WEBSITE}>
+        {COMPANY_NAME}
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
