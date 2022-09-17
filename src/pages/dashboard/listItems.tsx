@@ -14,6 +14,7 @@ import {
   FiSlack,
   FiSliders,
 } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 
 const MainMenus = [
   {
@@ -22,14 +23,14 @@ const MainMenus = [
     route: '/dashboard',
   },
   {
+    label: 'Users',
+    icon: <FiChrome />,
+    route: '/users',
+  },
+  {
     label: 'Orders',
     icon: <FiBook />,
     route: '/orders',
-  },
-  {
-    label: 'Customers',
-    icon: <FiChrome />,
-    route: '/customers',
   },
   {
     label: 'Reports',
@@ -43,45 +44,36 @@ const MainMenus = [
   },
 ];
 
-const SecondaryMenus = [
+const SubMenus = [
   {
     label: 'Current month',
     icon: <FiMail />,
-    route: '/dashboard',
+    route: '/dashboard2',
   },
   {
     label: 'Last quarter',
     icon: <FiSlack />,
-    route: '/orders',
+    route: '/orders2',
   },
   {
     label: 'Year-end sale',
     icon: <FiSliders />,
-    route: '/orders',
+    route: '/orders3',
   },
 ];
 
-export const mainListItems = (
-  <React.Fragment>
-    {MainMenus.map((menu) => (
-      <ListItemButton>
-        <ListItemIcon sx={{ fontSize: 20 }}>{menu.icon}</ListItemIcon>
-        <ListItemText primary={menu.label} />
-      </ListItemButton>
-    ))}
-  </React.Fragment>
-);
+export default function ListItems({ type }: { type: string }) {
+  const navigate = useNavigate();
+  const Menus = type === 'main' ? MainMenus : SubMenus;
 
-export const secondaryListItems = (
-  <React.Fragment>
-    <ListSubheader component="div" inset>
-      Saved reports
-    </ListSubheader>
-    {SecondaryMenus.map((menu) => (
-      <ListItemButton>
-        <ListItemIcon sx={{ fontSize: 20 }}>{menu.icon}</ListItemIcon>
-        <ListItemText primary={menu.label} />
-      </ListItemButton>
-    ))}
-  </React.Fragment>
-);
+  return (
+    <React.Fragment>
+      {Menus.map((menu) => (
+        <ListItemButton key={menu.route} onClick={() => navigate(menu.route)}>
+          <ListItemIcon sx={{ fontSize: 20 }}>{menu.icon}</ListItemIcon>
+          <ListItemText primary={menu.label} />
+        </ListItemButton>
+      ))}
+    </React.Fragment>
+  );
+}

@@ -3,10 +3,10 @@ import { styled } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
 import { Box, Toolbar, List, Divider, IconButton } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { mainListItems, secondaryListItems } from './listItems';
 import Copyright from '../../components/common/Copyright';
 import { DRAWER_WIDTH } from '../../constants/template';
 import { grey } from '@mui/material/colors';
+import ListItems from './listItems';
 
 function SideBar({
   open,
@@ -61,9 +61,9 @@ function SideBar({
       </Toolbar>
       <Divider />
       <List component="nav">
-        {mainListItems}
+        <ListItems type="main" />
         <Divider className="my-2" />
-        {secondaryListItems}
+        <ListItems type="sub" />
       </List>
       <Box
         sx={{
