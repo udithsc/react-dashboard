@@ -8,10 +8,10 @@ import {
   Stack,
   TextField,
 } from '@mui/material';
-import { Person } from './Peoples';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { User } from './Users';
 
 const schema = yup
   .object({
@@ -20,10 +20,10 @@ const schema = yup
   })
   .required();
 
-export const PeopleForm: FC<{
-  recordForEdit: Person;
+export const UserForm: FC<{
+  recordForEdit: User;
   onClose: () => void;
-  onSubmit: (values: Person) => void;
+  onSubmit: (values: User) => void;
   open: boolean;
 }> = ({ open, onClose, onSubmit, recordForEdit }) => {
   const {
@@ -31,14 +31,14 @@ export const PeopleForm: FC<{
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<Person>({
+  } = useForm<User>({
     defaultValues: useMemo(() => {
       return recordForEdit;
     }, [recordForEdit]),
     resolver: yupResolver(schema),
   });
 
-  const submit: SubmitHandler<Person> = (data) => {
+  const submit: SubmitHandler<User> = (data) => {
     onSubmit(data);
     onClose();
   };
@@ -76,26 +76,26 @@ export const PeopleForm: FC<{
               )}
             />
             <Controller
-              name="email"
+              name="address"
               control={control}
               render={({ field }) => (
                 <TextField
                   {...field}
-                  label="Email Address"
-                  error={errors.email && true}
-                  helperText={errors.email?.message}
+                  label="Address"
+                  error={errors.address && true}
+                  helperText={errors.address?.message}
                 />
               )}
             />
             <Controller
-              name="age"
+              name="phoneNumber"
               control={control}
               render={({ field }) => (
                 <TextField
                   {...field}
-                  label="Age"
-                  error={errors.age && true}
-                  helperText={errors.age?.message}
+                  label="Phone Number"
+                  error={errors.phoneNumber && true}
+                  helperText={errors.phoneNumber?.message}
                 />
               )}
             />
@@ -117,7 +117,7 @@ export const PeopleForm: FC<{
       <DialogActions sx={{ p: '1.25rem' }}>
         <Button onClick={onClose}>Cancel</Button>
         <Button onClick={handleSubmit(submit)} variant="contained">
-          Create New Account
+          {!recordForEdit.phoneNumber ? 'Create New Account' : 'Update Account'}
         </Button>
       </DialogActions>
     </Dialog>

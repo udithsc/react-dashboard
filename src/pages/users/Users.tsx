@@ -1,11 +1,16 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
-import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
+import MaterialReactTable, {
+  MRT_ColumnDef,
+  MRT_Row,
+} from 'material-react-table';
 import type {
   ColumnFiltersState,
   PaginationState,
   SortingState,
 } from '@tanstack/react-table';
-import { Box, Paper } from '@mui/material';
+import { Box, Button, IconButton, Paper, Tooltip } from '@mui/material';
+import { UserForm } from './UserForm';
+import { Delete, Edit } from '@mui/icons-material';
 
 type UserApiResponse = {
   data: Array<User>;
@@ -14,12 +19,20 @@ type UserApiResponse = {
   };
 };
 
-type User = {
+export type User = {
   firstName: string;
   lastName: string;
   address: string;
   state: string;
   phoneNumber: string;
+};
+
+const initialValues = {
+  firstName: '',
+  lastName: '',
+  address: '',
+  state: '',
+  phoneNumber: '',
 };
 
 const Example: FC = () => {
@@ -32,11 +45,15 @@ const Example: FC = () => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
-    pageSize: 10,
+    pageSize: 5,
   });
   const [rowCount, setRowCount] = useState(0);
+  const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [recordForEdit, setRecordForEdit] = useState<User>(initialValues);
 
-  //if you want to avoid useEffect, look at the React Query example instead
+  const handleCreateNewRow = (values: User) => {};
+  const handleDeleteRow = (row: MRT_Row<User>) => {};
+
   useEffect(() => {
     const fetchData = async () => {
       if (!data.length) {
@@ -62,8 +79,6 @@ const Example: FC = () => {
         setRowCount(json.meta.totalRowCount);
       } catch (error) {
         setIsError(true);
-        console.error(error);
-        return;
       }
       setIsError(false);
       setIsLoading(false);
@@ -111,7 +126,9 @@ const Example: FC = () => {
         columns={columns}
         data={data}
         getRowId={(row) => row.phoneNumber}
-        initialState={{ showColumnFilters: false }}
+        initialState={{
+          showColumnFilters: false,
+        }}
         manualFiltering
         manualPagination
         manualSorting
@@ -123,11 +140,6 @@ const Example: FC = () => {
               }
             : undefined
         }
-        muiLinearProgressProps={({ isTopToolbar }) => ({
-          color: 'secondary',
-          sx: { display: isTopToolbar ? 'block' : 'none' }, //only show top toolbar progress bar
-          variant: 'determinate',
-        })}
         onColumnFiltersChange={setColumnFilters}
         onGlobalFilterChange={setGlobalFilter}
         onPaginationChange={setPagination}
@@ -144,6 +156,49 @@ const Example: FC = () => {
         }}
         enableDensityToggle={false}
         enableHiding={false}
+        enableRowActions={true}
+        renderTopToolbarCustomActions={() => (
+          <Button onClick={() => setCreateModalOpen(true)} variant="contained">
+            Create New Account
+          </Button>
+        )}
+        positionActionsColumn="last"
+        displayColumnDefOptions={{
+          'mrt-row-actions': {
+            muiTableHeadCellProps: {
+              align: 'center',
+            },
+          },
+        }}
+        renderRowActions={({ row }) => (
+          <Box sx={{ display: 'flex' }}>
+            <Tooltip arrow placement="left" title="Edit">
+              <IconButton
+                onClick={() => {
+                  const { original: user } = row;
+                  setRecordForEdit(user);
+                  setCreateModalOpen(true);
+                }}
+              >
+                <Edit />
+              </IconButton>
+            </Tooltip>
+            <Tooltip arrow placement="right" title="Delete">
+              <IconButton color="error" onClick={() => handleDeleteRow(row)}>
+                <Delete />
+              </IconButton>
+            </Tooltip>
+          </Box>
+        )}
+      />
+      <UserForm
+        recordForEdit={recordForEdit}
+        open={createModalOpen}
+        onClose={() => {
+          setRecordForEdit(initialValues);
+          setCreateModalOpen(false);
+        }}
+        onSubmit={handleCreateNewRow}
       />
     </Paper>
   );
