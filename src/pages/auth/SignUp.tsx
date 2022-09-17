@@ -47,13 +47,17 @@ export default function SignUp() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="sm">
       <Box
         sx={{
           marginTop: 8,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          border: 2,
+          p: 2,
+          borderRadius: 2,
+          borderColor: 'primary.main',
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>

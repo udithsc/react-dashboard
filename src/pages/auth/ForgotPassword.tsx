@@ -43,7 +43,10 @@ export default function ForgotPassword() {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Box className="flex flex-col items-center mt-16">
+      <Box
+        className="flex flex-col items-center mt-16"
+        sx={{ border: 2, p: 2, borderRadius: 2, borderColor: 'primary.main' }}
+      >
         <Avatar className={`m-1 bg-[${theme.palette.secondary.main}]`}>
           <LockOutlinedIcon />
         </Avatar>
