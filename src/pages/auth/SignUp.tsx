@@ -10,6 +10,7 @@ import {
   Box,
   Typography,
   Container,
+  Paper,
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Copyright from '../../components/common/Copyright';
@@ -48,16 +49,14 @@ export default function SignUp() {
 
   return (
     <Container component="main" maxWidth="sm">
-      <Box
+      <Paper
         sx={{
           marginTop: 8,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          border: 2,
           p: 2,
           borderRadius: 2,
-          borderColor: 'primary.main',
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -142,12 +141,7 @@ export default function SignUp() {
               />
             </Grid>
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
+          <Button type="submit" fullWidth variant="contained" sx={{ my: 2 }}>
             Sign Up
           </Button>
           <Grid container justifyContent="flex-end">
@@ -158,7 +152,7 @@ export default function SignUp() {
             </Grid>
           </Grid>
         </Box>
-      </Box>
+      </Paper>
       <Copyright />
     </Container>
   );

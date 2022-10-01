@@ -10,7 +10,9 @@ import {
   Box,
   Typography,
   Container,
+  Paper,
 } from '@mui/material';
+import { grey } from '@mui/material/colors';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Copyright from '../../components/common/Copyright';
 import { useTheme } from '@mui/material/styles';
@@ -32,7 +34,6 @@ const schema = yup
   .required();
 
 export default function SignIn() {
-  const theme = useTheme();
   const navigate = useNavigate();
 
   const {
@@ -52,11 +53,11 @@ export default function SignIn() {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Box
-        className="flex flex-col items-center mt-16"
-        sx={{ border: 2, p: 2, borderRadius: 2, borderColor: 'primary.main' }}
+      <Paper
+        className="flex flex-col items-center mt-24 shadow-xl"
+        sx={{ py: 2, borderRadius: 2 }}
       >
-        <Avatar className={`m-1 bg-[${theme.palette.secondary.main}]`}>
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -67,6 +68,7 @@ export default function SignIn() {
           onSubmit={handleSubmit(onSubmit)}
           noValidate
           className="mt-2"
+          sx={{ width: '90%' }}
         >
           <Controller
             name="email"
@@ -125,7 +127,7 @@ export default function SignIn() {
             </Grid>
           </Grid>
         </Box>
-      </Box>
+      </Paper>
       <Copyright />
     </Container>
   );

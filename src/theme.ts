@@ -68,6 +68,11 @@ const themeOptions = {
       },
     },
     MuiTextField: {
+      styleOverrides: {
+        root: sx({
+          mt: 1,
+        }),
+      },
       defaultProps: {
         fullWidth: true,
       },

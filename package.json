@@ -18,7 +18,7 @@
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
     "axios": "^0.27.2",
-    "material-react-table": "^1.0.7",
+    "material-react-table": "^1.2.2",
     "postcss": "latest",
     "react": "latest",
     "react-dom": "latest",

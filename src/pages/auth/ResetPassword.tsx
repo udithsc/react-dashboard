@@ -6,6 +6,7 @@ import {
   Box,
   Typography,
   Container,
+  Paper,
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Copyright from '../../components/common/Copyright';
@@ -44,11 +45,11 @@ export default function ResetPassword() {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Box
+      <Paper
         className="flex flex-col items-center mt-16"
-        sx={{ border: 2, p: 2, borderRadius: 2, borderColor: 'primary.main' }}
+        sx={{ p: 2, borderRadius: 2 }}
       >
-        <Avatar className={`m-1 bg-[${theme.palette.secondary.main}]`}>
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -67,7 +68,7 @@ export default function ResetPassword() {
             render={({ field }) => (
               <TextField
                 {...field}
-                label="Password"
+                label="New Password"
                 type="password"
                 required
                 error={errors.password && true}
@@ -82,7 +83,7 @@ export default function ResetPassword() {
             render={({ field }) => (
               <TextField
                 {...field}
-                label="Password"
+                label="Confirm New Password"
                 type="password"
                 required
                 error={errors.password && true}
@@ -91,11 +92,16 @@ export default function ResetPassword() {
             )}
           />
 
-          <Button type="submit" variant="contained" className="mt-4 mb-4">
+          <Button
+            type="submit"
+            variant="contained"
+            className="mt-4 mb-4"
+            fullWidth
+          >
             Reset Password
           </Button>
         </Box>
-      </Box>
+      </Paper>
       <Copyright />
     </Container>
   );

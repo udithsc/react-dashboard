@@ -8,6 +8,7 @@ import {
   Box,
   Typography,
   Container,
+  Paper,
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Copyright from '../../components/common/Copyright';
@@ -43,11 +44,11 @@ export default function ForgotPassword() {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Box
-        className="flex flex-col items-center mt-16"
-        sx={{ border: 2, p: 2, borderRadius: 2, borderColor: 'primary.main' }}
+      <Paper
+        className="flex flex-col items-center mt-24 shadow-xl"
+        sx={{ borderRadius: 2 }}
       >
-        <Avatar className={`m-1 bg-[${theme.palette.secondary.main}]`}>
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -57,7 +58,7 @@ export default function ForgotPassword() {
           component="form"
           onSubmit={handleSubmit(onSubmit)}
           noValidate
-          className="mt-2"
+          sx={{ width: '90%' }}
         >
           <Controller
             name="email"
@@ -72,23 +73,16 @@ export default function ForgotPassword() {
               />
             )}
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            className="mt-4 mb-4"
-          >
+          <Button type="submit" fullWidth variant="contained" className="my-4">
             Send Email
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="/signin" variant="body2">
-                Sign In?
-              </Link>
-            </Grid>
+          <Grid container className="mb-2">
+            <Link href="/signin" variant="body2">
+              Back
+            </Link>
           </Grid>
         </Box>
-      </Box>
+      </Paper>
       <Copyright />
     </Container>
   );
