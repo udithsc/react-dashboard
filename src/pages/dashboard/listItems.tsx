@@ -23,7 +23,7 @@ const MainMenus = [
     route: '/',
   },
   {
-    label: 'Users',
+    label: 'Realms',
     icon: <FiChrome />,
     route: '/users',
   },

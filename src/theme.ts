@@ -1,5 +1,5 @@
 const rootElement = document.getElementById('root');
-import { deepPurple, amber } from '@mui/material/colors';
+import { blue, lightGreen } from '@mui/material/colors';
 import { createTheme, experimental_sx as sx } from '@mui/material/styles';
 
 // All `Portal`-related components need to have the the main app wrapper element as a container
@@ -7,11 +7,14 @@ import { createTheme, experimental_sx as sx } from '@mui/material/styles';
 const themeOptions = {
   palette: {
     primary: {
-      main: deepPurple[500],
+      main: blue[500],
     },
     secondary: {
-      main: amber[500],
-      contrastText: deepPurple[900],
+      main: lightGreen[500],
+      contrastText: lightGreen[900],
+    },
+    background: {
+      default: blue[50],
     },
   },
   components: {

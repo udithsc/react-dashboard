@@ -11,7 +11,7 @@ import {
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { User } from './Users';
+import { Realm } from './Realms';
 
 const schema = yup
   .object({
@@ -20,10 +20,10 @@ const schema = yup
   })
   .required();
 
-export const UserForm: FC<{
-  recordForEdit: User;
+export const RealmForm: FC<{
+  recordForEdit: Realm;
   onClose: () => void;
-  onSubmit: (values: User) => void;
+  onSubmit: (values: Realm) => void;
   open: boolean;
 }> = ({ open, onClose, onSubmit, recordForEdit }) => {
   const {
@@ -31,14 +31,14 @@ export const UserForm: FC<{
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<User>({
+  } = useForm<Realm>({
     defaultValues: useMemo(() => {
       return recordForEdit;
     }, [recordForEdit]),
     resolver: yupResolver(schema),
   });
 
-  const submit: SubmitHandler<User> = (data) => {
+  const submit: SubmitHandler<Realm> = (data) => {
     onSubmit(data);
     onClose();
   };

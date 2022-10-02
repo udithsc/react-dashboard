@@ -9,17 +9,17 @@ import type {
   SortingState,
 } from '@tanstack/react-table';
 import { Box, Button, IconButton, Paper, Tooltip } from '@mui/material';
-import { UserForm } from './UserForm';
+import { RealmForm } from './RealmForm';
 import { Delete, Edit } from '@mui/icons-material';
 
-type UserApiResponse = {
-  data: Array<User>;
+type RealmApiResponse = {
+  data: Array<Realm>;
   meta: {
     totalRowCount: number;
   };
 };
 
-export type User = {
+export type Realm = {
   firstName: string;
   lastName: string;
   address: string;
@@ -36,7 +36,7 @@ const initialValues = {
 };
 
 const Example: FC = () => {
-  const [data, setData] = useState<User[]>([]);
+  const [data, setData] = useState<Realm[]>([]);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isRefetching, setIsRefetching] = useState(false);
@@ -49,10 +49,10 @@ const Example: FC = () => {
   });
   const [rowCount, setRowCount] = useState(0);
   const [createModalOpen, setCreateModalOpen] = useState(false);
-  const [recordForEdit, setRecordForEdit] = useState<User>(initialValues);
+  const [recordForEdit, setRecordForEdit] = useState<Realm>(initialValues);
 
-  const handleCreateNewRow = (values: User) => {};
-  const handleDeleteRow = (row: MRT_Row<User>) => {};
+  const handleCreateNewRow = (values: Realm) => {};
+  const handleDeleteRow = (row: MRT_Row<Realm>) => {};
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,7 +74,7 @@ const Example: FC = () => {
 
       try {
         const response = await fetch(url.href);
-        const json = (await response.json()) as UserApiResponse;
+        const json = (await response.json()) as RealmApiResponse;
         setData(json.data);
         setRowCount(json.meta.totalRowCount);
       } catch (error) {
@@ -93,7 +93,7 @@ const Example: FC = () => {
     sorting,
   ]);
 
-  const columns = useMemo<MRT_ColumnDef<User>[]>(
+  const columns = useMemo<MRT_ColumnDef<Realm>[]>(
     () => [
       {
         accessorKey: 'firstName',
@@ -120,8 +120,7 @@ const Example: FC = () => {
   );
 
   return (
-    <Paper sx={{ p: 2 }}>
-      <Box>Users</Box>
+    <Box>
       <MaterialReactTable
         columns={columns}
         data={data}
@@ -159,7 +158,7 @@ const Example: FC = () => {
         enableRowActions={true}
         renderTopToolbarCustomActions={() => (
           <Button onClick={() => setCreateModalOpen(true)} variant="contained">
-            Create New Account
+            Create New Realm
           </Button>
         )}
         positionActionsColumn="last"
@@ -191,7 +190,7 @@ const Example: FC = () => {
           </Box>
         )}
       />
-      <UserForm
+      <RealmForm
         recordForEdit={recordForEdit}
         open={createModalOpen}
         onClose={() => {
@@ -200,7 +199,7 @@ const Example: FC = () => {
         }}
         onSubmit={handleCreateNewRow}
       />
-    </Paper>
+    </Box>
   );
 };
 

@@ -14,12 +14,7 @@ function Dashboard() {
     <Box className="flex">
       <AppBar open={open} toggleDrawer={toggleDrawer} />
       <SideBar open={open} toggleDrawer={toggleDrawer} />
-      <Box
-        component="main"
-        className={`h-screen overflow-auto flex-grow ${
-          theme.palette.mode === 'light' ? 'bg-gray-100' : 'bg-gray-900'
-        }`}
-      >
+      <Box>
         <Toolbar />
         <Container className="max-w-screen-xl my-8">
           <Outlet />

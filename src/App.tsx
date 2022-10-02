@@ -6,7 +6,7 @@ import Home from './pages/home/Home';
 import ResetPassword from './pages/auth/ResetPassword';
 import SignIn from './pages/auth/SignIn';
 import SignUp from './pages/auth/SignUp';
-import Users from './pages/users/Users';
+import Realms from './pages/realms/Realms';
 import NotFound from './pages/dashboard/NotFound';
 
 export default function App() {
@@ -14,7 +14,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Dashboard />}>
         <Route index element={<Home />} />
-        <Route path="/users" element={<Users />}></Route>
+        <Route path="/users" element={<Realms />}></Route>
         <Route path="/*" element={<NotFound />} />
       </Route>
       <Route path="/resetpassword" element={<ResetPassword />} />

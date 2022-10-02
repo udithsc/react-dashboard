@@ -19,6 +19,7 @@ function SideBar({
     shouldForwardProp: (prop) => prop !== 'open',
   })(({ theme, open }) => ({
     '& .MuiDrawer-paper': {
+      height: '100vh',
       position: 'relative',
       whiteSpace: 'nowrap',
       borderRight: 'none',
