@@ -12,20 +12,18 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Copyright from '../../components/common/Copyright';
 import { useTheme } from '@mui/material/styles';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { joiResolver } from '@hookform/resolvers/joi';
+import Joi from 'joi';
 
 interface IFormInput {
   email: string;
   password: string;
 }
 
-const schema = yup
-  .object({
-    email: yup.string().email().required(),
-    password: yup.string().min(6).max(16).required(),
-  })
-  .required();
+const schema = Joi.object({
+  email: Joi.string().required(),
+  password: Joi.string().min(6).max(16).required(),
+}).required();
 
 export default function ResetPassword() {
   const theme = useTheme();
@@ -34,7 +32,7 @@ export default function ResetPassword() {
     handleSubmit,
     formState: { errors },
   } = useForm<IFormInput>({
-    resolver: yupResolver(schema),
+    resolver: joiResolver(schema),
   });
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
@@ -73,6 +71,7 @@ export default function ResetPassword() {
                 required
                 error={errors.password && true}
                 helperText={errors.password?.message}
+                size="small"
               />
             )}
           />
@@ -88,6 +87,7 @@ export default function ResetPassword() {
                 required
                 error={errors.password && true}
                 helperText={errors.password?.message}
+                size="small"
               />
             )}
           />

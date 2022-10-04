@@ -9,16 +9,14 @@ import {
   TextField,
 } from '@mui/material';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { joiResolver } from '@hookform/resolvers/joi';
+import Joi from 'joi';
 import { User } from './Users';
 
-const schema = yup
-  .object({
-    email: yup.string().email().required(),
-    password: yup.string().min(6).max(16).required(),
-  })
-  .required();
+const schema = Joi.object({
+  email: Joi.string().required(),
+  password: Joi.string().min(6).max(16).required(),
+}).required();
 
 export const UserForm: FC<{
   recordForEdit: User;
@@ -35,7 +33,7 @@ export const UserForm: FC<{
     defaultValues: useMemo(() => {
       return recordForEdit;
     }, [recordForEdit]),
-    resolver: yupResolver(schema),
+    resolver: joiResolver(schema),
   });
 
   const submit: SubmitHandler<User> = (data) => {
@@ -60,6 +58,7 @@ export const UserForm: FC<{
                   label="Name"
                   error={errors.name && true}
                   helperText={errors.name?.message}
+                  size="small"
                 />
               )}
             />
@@ -72,6 +71,7 @@ export const UserForm: FC<{
                   label="username"
                   error={errors.username && true}
                   helperText={errors.username?.message}
+                  size="small"
                 />
               )}
             />
@@ -84,6 +84,7 @@ export const UserForm: FC<{
                   label="Email"
                   error={errors.email && true}
                   helperText={errors.email?.message}
+                  size="small"
                 />
               )}
             />
@@ -96,6 +97,7 @@ export const UserForm: FC<{
                   label="Website"
                   error={errors.website && true}
                   helperText={errors.website?.message}
+                  size="small"
                 />
               )}
             />
@@ -108,6 +110,7 @@ export const UserForm: FC<{
                   label="Phone"
                   error={errors.phone && true}
                   helperText={errors.phone?.message}
+                  size="small"
                 />
               )}
             />

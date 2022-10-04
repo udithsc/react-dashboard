@@ -7,14 +7,13 @@ import { createTheme, experimental_sx as sx } from '@mui/material/styles';
 const themeOptions = {
   palette: {
     primary: {
-      main: blue[500],
+      main: '#b31f33',
     },
     secondary: {
-      main: lightGreen[500],
-      contrastText: lightGreen[900],
+      main: '#1fb39f',
     },
     background: {
-      default: blue[50],
+      default: '#f7e8ea',
     },
   },
   components: {

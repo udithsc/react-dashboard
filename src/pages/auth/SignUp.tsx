@@ -15,8 +15,8 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Copyright from '../../components/common/Copyright';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { joiResolver } from '@hookform/resolvers/joi';
+import Joi from 'joi';
 
 interface IFormInput {
   firstName: string;
@@ -25,14 +25,12 @@ interface IFormInput {
   password: string;
 }
 
-const schema = yup
-  .object({
-    firstName: yup.string().min(3).max(16).required(),
-    lastName: yup.string().min(3).max(16).required(),
-    email: yup.string().email().required(),
-    password: yup.string().min(6).max(16).required(),
-  })
-  .required();
+const schema = Joi.object({
+  firstName: Joi.string().min(3).max(16).required(),
+  lastName: Joi.string().min(3).max(16).required(),
+  email: Joi.string().required(),
+  password: Joi.string().min(6).max(16).required(),
+}).required();
 
 export default function SignUp() {
   const {
@@ -40,7 +38,7 @@ export default function SignUp() {
     handleSubmit,
     formState: { errors },
   } = useForm<IFormInput>({
-    resolver: yupResolver(schema),
+    resolver: joiResolver(schema),
   });
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
@@ -84,6 +82,7 @@ export default function SignUp() {
                     autoComplete="given-name"
                     autoFocus
                     required
+                    size="small"
                   />
                 )}
               />
@@ -99,6 +98,7 @@ export default function SignUp() {
                     label="Last Name"
                     autoComplete="family-name"
                     required
+                    size="small"
                   />
                 )}
               />
@@ -114,6 +114,7 @@ export default function SignUp() {
                     label="Email Address"
                     autoComplete="email"
                     required
+                    size="small"
                   />
                 )}
               />
@@ -130,6 +131,7 @@ export default function SignUp() {
                     type="password"
                     autoComplete="current-password"
                     required
+                    size="small"
                   />
                 )}
               />
