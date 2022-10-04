@@ -14,9 +14,9 @@ function Dashboard() {
     <Box className="flex">
       <AppBar open={open} toggleDrawer={toggleDrawer} />
       <SideBar open={open} toggleDrawer={toggleDrawer} />
-      <Box>
+      <Box className="w-full p-4">
         <Toolbar />
-        <Container className="max-w-screen-xl my-8">
+        <Container>
           <Outlet />
         </Container>
       </Box>

@@ -8,15 +8,9 @@ import { DRAWER_WIDTH } from '../../constants/template';
 import { grey } from '@mui/material/colors';
 import ListItems from './listItems';
 
-function SideBar({
-  open,
-  toggleDrawer,
-}: {
-  open?: boolean;
-  toggleDrawer: () => void;
-}) {
+function SideBar({ open, toggleDrawer }: { open?: boolean; toggleDrawer: () => void }) {
   const Drawer = styled(MuiDrawer, {
-    shouldForwardProp: (prop) => prop !== 'open',
+    shouldForwardProp: (prop) => prop !== 'open'
   })(({ theme, open }) => ({
     '& .MuiDrawer-paper': {
       height: '100vh',
@@ -26,24 +20,24 @@ function SideBar({
       width: DRAWER_WIDTH,
       transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
+        duration: theme.transitions.duration.enteringScreen
       }),
       boxSizing: 'border-box',
       ...(!open && {
         overflowX: 'hidden',
         transition: theme.transitions.create('width', {
           easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen,
+          duration: theme.transitions.duration.leavingScreen
         }),
         width: theme.spacing(7),
         [theme.breakpoints.up('sm')]: {
-          width: theme.spacing(7),
-        },
-      }),
+          width: theme.spacing(7)
+        }
+      })
     },
     '& .MuiListItemButton-root:hover': {
-      backgroundColor: grey[200],
-    },
+      backgroundColor: '#f9eef0'
+    }
   }));
 
   return (
@@ -52,10 +46,7 @@ function SideBar({
         className="flex items-center justify-end px-1"
         sx={{ backgroundColor: 'primary.main' }}
       >
-        <img
-          src="https://techventuras.com/wp-content/uploads/2022/03/logo-1.png"
-          height={'45%'}
-        />
+        <img src="/logo-1.png" height={'45%'} />
         <IconButton onClick={toggleDrawer}>
           <ChevronLeftIcon />
         </IconButton>
@@ -72,7 +63,7 @@ function SideBar({
           alignItems: 'flex-end',
           justifyContent: 'center',
           height: '100%',
-          mb: 4,
+          mb: 4
         }}
       >
         <Copyright />

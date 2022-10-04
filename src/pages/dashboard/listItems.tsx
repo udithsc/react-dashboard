@@ -1,65 +1,52 @@
 import React from 'react';
-import {
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  ListSubheader,
-} from '@mui/material';
-import {
-  FiGrid,
-  FiBook,
-  FiChrome,
-  FiFileMinus,
-  FiMail,
-  FiSlack,
-  FiSliders,
-} from 'react-icons/fi';
+import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { FiGrid, FiBook, FiChrome, FiFileMinus, FiMail, FiSlack, FiSliders } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 
 const MainMenus = [
   {
     label: 'Dashboard',
     icon: <FiGrid />,
-    route: '/',
+    route: '/'
   },
   {
     label: 'Users',
     icon: <FiChrome />,
-    route: '/users',
+    route: '/users'
   },
   {
     label: 'Orders',
     icon: <FiBook />,
-    route: '/orders',
+    route: '/'
   },
   {
     label: 'Reports',
     icon: <FiChrome />,
-    route: '/reports',
+    route: '/'
   },
   {
     label: 'Integrations',
     icon: <FiFileMinus />,
-    route: '/integrations',
-  },
+    route: '/'
+  }
 ];
 
 const SubMenus = [
   {
     label: 'Current month',
     icon: <FiMail />,
-    route: '/dashboard2',
+    route: '/'
   },
   {
     label: 'Last quarter',
     icon: <FiSlack />,
-    route: '/orders2',
+    route: '/'
   },
   {
     label: 'Year-end sale',
     icon: <FiSliders />,
-    route: '/orders3',
-  },
+    route: '/'
+  }
 ];
 
 export default function ListItems({ type }: { type: string }) {

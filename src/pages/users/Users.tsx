@@ -1,13 +1,6 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
-import MaterialReactTable, {
-  MRT_ColumnDef,
-  MRT_Row,
-} from 'material-react-table';
-import type {
-  ColumnFiltersState,
-  PaginationState,
-  SortingState,
-} from '@tanstack/react-table';
+import MaterialReactTable, { MRT_ColumnDef, MRT_Row } from 'material-react-table';
+import type { ColumnFiltersState, PaginationState, SortingState } from '@tanstack/react-table';
 import { Box, Button, IconButton, Paper, Tooltip } from '@mui/material';
 import { UserForm } from './UserForm';
 import { Delete, Edit } from '@mui/icons-material';
@@ -32,7 +25,7 @@ const initialValues = {
   username: '',
   email: '',
   website: '',
-  phone: '',
+  phone: ''
 };
 
 const Example: FC = () => {
@@ -45,7 +38,7 @@ const Example: FC = () => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
-    pageSize: 5,
+    pageSize: 5
   });
   const [rowCount, setRowCount] = useState(0);
   const [createModalOpen, setCreateModalOpen] = useState(false);
@@ -63,10 +56,7 @@ const Example: FC = () => {
       }
 
       const url = new URL('/users', 'https://jsonplaceholder.typicode.com/');
-      url.searchParams.set(
-        'start',
-        `${pagination.pageIndex * pagination.pageSize}`
-      );
+      url.searchParams.set('start', `${pagination.pageIndex * pagination.pageSize}`);
       url.searchParams.set('size', `${pagination.pageSize}`);
       url.searchParams.set('filters', JSON.stringify(columnFilters ?? []));
       url.searchParams.set('globalFilter', globalFilter ?? '');
@@ -86,48 +76,42 @@ const Example: FC = () => {
       setIsRefetching(false);
     };
     fetchData();
-  }, [
-    columnFilters,
-    globalFilter,
-    pagination.pageIndex,
-    pagination.pageSize,
-    sorting,
-  ]);
+  }, [columnFilters, globalFilter, pagination.pageIndex, pagination.pageSize, sorting]);
 
   const columns = useMemo<MRT_ColumnDef<User>[]>(
     () => [
       {
         accessorKey: 'name',
-        header: 'Name',
+        header: 'Name'
       },
       {
         accessorKey: 'username',
-        header: 'User Name',
+        header: 'User Name'
       },
       {
         accessorKey: 'email',
-        header: 'Email',
+        header: 'Email'
       },
       {
         accessorKey: 'website',
-        header: 'Website',
+        header: 'Website'
       },
       {
         accessorKey: 'phone',
-        header: 'Phone Number',
-      },
+        header: 'Phone Number'
+      }
     ],
     []
   );
 
   return (
-    <Box>
+    <>
       <MaterialReactTable
         columns={columns}
         data={data}
         getRowId={(row) => row.phone}
         initialState={{
-          showColumnFilters: false,
+          showColumnFilters: false
         }}
         manualFiltering
         manualPagination
@@ -136,7 +120,7 @@ const Example: FC = () => {
           isError
             ? {
                 color: 'error',
-                children: 'Error loading data',
+                children: 'Error loading data'
               }
             : undefined
         }
@@ -152,7 +136,7 @@ const Example: FC = () => {
           pagination,
           showAlertBanner: isError,
           showProgressBars: isRefetching,
-          sorting,
+          sorting
         }}
         enableDensityToggle={false}
         enableHiding={false}
@@ -166,9 +150,9 @@ const Example: FC = () => {
         displayColumnDefOptions={{
           'mrt-row-actions': {
             muiTableHeadCellProps: {
-              align: 'center',
-            },
-          },
+              align: 'center'
+            }
+          }
         }}
         renderRowActions={({ row }) => (
           <Box sx={{ display: 'flex' }}>
@@ -200,7 +184,7 @@ const Example: FC = () => {
         }}
         onSubmit={handleCreateNewRow}
       />
-    </Box>
+    </>
   );
 };
 
