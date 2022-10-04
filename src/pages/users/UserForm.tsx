@@ -11,7 +11,7 @@ import {
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { Realm } from './Realms';
+import { User } from './Users';
 
 const schema = yup
   .object({
@@ -20,10 +20,10 @@ const schema = yup
   })
   .required();
 
-export const RealmForm: FC<{
-  recordForEdit: Realm;
+export const UserForm: FC<{
+  recordForEdit: User;
   onClose: () => void;
-  onSubmit: (values: Realm) => void;
+  onSubmit: (values: User) => void;
   open: boolean;
 }> = ({ open, onClose, onSubmit, recordForEdit }) => {
   const {
@@ -31,14 +31,14 @@ export const RealmForm: FC<{
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<Realm>({
+  } = useForm<User>({
     defaultValues: useMemo(() => {
       return recordForEdit;
     }, [recordForEdit]),
     resolver: yupResolver(schema),
   });
 
-  const submit: SubmitHandler<Realm> = (data) => {
+  const submit: SubmitHandler<User> = (data) => {
     onSubmit(data);
     onClose();
   };
@@ -52,62 +52,62 @@ export const RealmForm: FC<{
         <form onSubmit={(e) => e.preventDefault()}>
           <Stack sx={{ minWidth: { xs: '300px', sm: '360px', md: '400px' } }}>
             <Controller
-              name="firstName"
+              name="name"
               control={control}
               render={({ field }) => (
                 <TextField
                   {...field}
-                  label="First Name"
-                  error={errors.firstName && true}
-                  helperText={errors.firstName?.message}
+                  label="Name"
+                  error={errors.name && true}
+                  helperText={errors.name?.message}
                 />
               )}
             />
             <Controller
-              name="lastName"
+              name="username"
               control={control}
               render={({ field }) => (
                 <TextField
                   {...field}
-                  label="Last Name"
-                  error={errors.lastName && true}
-                  helperText={errors.lastName?.message}
+                  label="username"
+                  error={errors.username && true}
+                  helperText={errors.username?.message}
                 />
               )}
             />
             <Controller
-              name="address"
+              name="email"
               control={control}
               render={({ field }) => (
                 <TextField
                   {...field}
-                  label="Address"
-                  error={errors.address && true}
-                  helperText={errors.address?.message}
+                  label="Email"
+                  error={errors.email && true}
+                  helperText={errors.email?.message}
                 />
               )}
             />
             <Controller
-              name="phoneNumber"
+              name="website"
               control={control}
               render={({ field }) => (
                 <TextField
                   {...field}
-                  label="Phone Number"
-                  error={errors.phoneNumber && true}
-                  helperText={errors.phoneNumber?.message}
+                  label="Website"
+                  error={errors.website && true}
+                  helperText={errors.website?.message}
                 />
               )}
             />
             <Controller
-              name="state"
+              name="phone"
               control={control}
               render={({ field }) => (
                 <TextField
                   {...field}
-                  label="State"
-                  error={errors.state && true}
-                  helperText={errors.state?.message}
+                  label="Phone"
+                  error={errors.phone && true}
+                  helperText={errors.phone?.message}
                 />
               )}
             />
@@ -117,7 +117,7 @@ export const RealmForm: FC<{
       <DialogActions sx={{ p: '1.25rem' }}>
         <Button onClick={onClose}>Cancel</Button>
         <Button onClick={handleSubmit(submit)} variant="contained">
-          {!recordForEdit.phoneNumber ? 'Create New Account' : 'Update Account'}
+          {!recordForEdit.phone ? 'Create New Account' : 'Update Account'}
         </Button>
       </DialogActions>
     </Dialog>

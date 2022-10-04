@@ -9,34 +9,34 @@ import type {
   SortingState,
 } from '@tanstack/react-table';
 import { Box, Button, IconButton, Paper, Tooltip } from '@mui/material';
-import { RealmForm } from './RealmForm';
+import { UserForm } from './UserForm';
 import { Delete, Edit } from '@mui/icons-material';
 
-type RealmApiResponse = {
-  data: Array<Realm>;
+type UserApiResponse = {
+  data: Array<User>;
   meta: {
     totalRowCount: number;
   };
 };
 
-export type Realm = {
-  firstName: string;
-  lastName: string;
-  address: string;
-  state: string;
-  phoneNumber: string;
+export type User = {
+  name: string;
+  username: string;
+  email: string;
+  website: string;
+  phone: string;
 };
 
 const initialValues = {
-  firstName: '',
-  lastName: '',
-  address: '',
-  state: '',
-  phoneNumber: '',
+  name: '',
+  username: '',
+  email: '',
+  website: '',
+  phone: '',
 };
 
 const Example: FC = () => {
-  const [data, setData] = useState<Realm[]>([]);
+  const [data, setData] = useState<User[]>([]);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isRefetching, setIsRefetching] = useState(false);
@@ -49,20 +49,20 @@ const Example: FC = () => {
   });
   const [rowCount, setRowCount] = useState(0);
   const [createModalOpen, setCreateModalOpen] = useState(false);
-  const [recordForEdit, setRecordForEdit] = useState<Realm>(initialValues);
+  const [recordForEdit, setRecordForEdit] = useState<User>(initialValues);
 
-  const handleCreateNewRow = (values: Realm) => {};
-  const handleDeleteRow = (row: MRT_Row<Realm>) => {};
+  const handleCreateNewRow = (values: User) => {};
+  const handleDeleteRow = (row: MRT_Row<User>) => {};
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!data.length) {
+      if (!data?.length) {
         setIsLoading(true);
       } else {
         setIsRefetching(true);
       }
 
-      const url = new URL('/api/data', 'https://www.material-react-table.com');
+      const url = new URL('/users', 'https://jsonplaceholder.typicode.com/');
       url.searchParams.set(
         'start',
         `${pagination.pageIndex * pagination.pageSize}`
@@ -74,7 +74,8 @@ const Example: FC = () => {
 
       try {
         const response = await fetch(url.href);
-        const json = (await response.json()) as RealmApiResponse;
+        const json = (await response.json()) as UserApiResponse;
+        console.log(json);
         setData(json.data);
         setRowCount(json.meta.totalRowCount);
       } catch (error) {
@@ -93,26 +94,26 @@ const Example: FC = () => {
     sorting,
   ]);
 
-  const columns = useMemo<MRT_ColumnDef<Realm>[]>(
+  const columns = useMemo<MRT_ColumnDef<User>[]>(
     () => [
       {
-        accessorKey: 'firstName',
-        header: 'First Name',
+        accessorKey: 'name',
+        header: 'Name',
       },
       {
-        accessorKey: 'lastName',
-        header: 'Last Name',
+        accessorKey: 'username',
+        header: 'User Name',
       },
       {
-        accessorKey: 'address',
-        header: 'Address',
+        accessorKey: 'email',
+        header: 'Email',
       },
       {
-        accessorKey: 'state',
-        header: 'State',
+        accessorKey: 'website',
+        header: 'Website',
       },
       {
-        accessorKey: 'phoneNumber',
+        accessorKey: 'phone',
         header: 'Phone Number',
       },
     ],
@@ -124,7 +125,7 @@ const Example: FC = () => {
       <MaterialReactTable
         columns={columns}
         data={data}
-        getRowId={(row) => row.phoneNumber}
+        getRowId={(row) => row.phone}
         initialState={{
           showColumnFilters: false,
         }}
@@ -158,7 +159,7 @@ const Example: FC = () => {
         enableRowActions={true}
         renderTopToolbarCustomActions={() => (
           <Button onClick={() => setCreateModalOpen(true)} variant="contained">
-            Create New Realm
+            Create New User
           </Button>
         )}
         positionActionsColumn="last"
@@ -190,7 +191,7 @@ const Example: FC = () => {
           </Box>
         )}
       />
-      <RealmForm
+      <UserForm
         recordForEdit={recordForEdit}
         open={createModalOpen}
         onClose={() => {
