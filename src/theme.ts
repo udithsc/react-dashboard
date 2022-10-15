@@ -11,10 +11,10 @@ const themeOptions = {
     },
     secondary: {
       main: '#1fb39f'
-    },
-    background: {
-      default: '#fbf5f6'
     }
+    // background: {
+    //   default: '#fbf5f6'
+    // }
   },
   components: {
     MuiPopover: {
@@ -77,6 +77,13 @@ const themeOptions = {
       },
       defaultProps: {
         fullWidth: true
+      }
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: sx({
+          bgcolor: '#fff'
+        })
       }
     }
   }

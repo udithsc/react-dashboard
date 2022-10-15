@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Typography } from '@mui/material';
-import Title from '../../components/common/Title';
+import Title from '../../components/Title';
 
 function preventDefault(event: React.MouseEvent) {
   event.preventDefault();

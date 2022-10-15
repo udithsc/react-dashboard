@@ -8,10 +8,10 @@ import {
   Box,
   Typography,
   Container,
-  Paper,
+  Paper
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Copyright from '../../components/common/Copyright';
+import Copyright from '../../components/Copyright';
 import { useTheme } from '@mui/material/styles';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
@@ -22,7 +22,7 @@ interface IFormInput {
 
 const schema = Joi.object({
   email: Joi.string().required(),
-  password: Joi.string().min(6).max(16).required(),
+  password: Joi.string().min(6).max(16).required()
 }).required();
 
 export default function ForgotPassword() {
@@ -31,9 +31,9 @@ export default function ForgotPassword() {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<IFormInput>({
-    resolver: joiResolver(schema),
+    resolver: joiResolver(schema)
   });
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
@@ -42,22 +42,14 @@ export default function ForgotPassword() {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Paper
-        className="flex flex-col items-center mt-24 shadow-xl"
-        sx={{ borderRadius: 2 }}
-      >
+      <Paper className="flex flex-col items-center mt-24 shadow-xl" sx={{ borderRadius: 2 }}>
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Forgot Password
         </Typography>
-        <Box
-          component="form"
-          onSubmit={handleSubmit(onSubmit)}
-          noValidate
-          sx={{ width: '90%' }}
-        >
+        <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ width: '90%' }}>
           <Controller
             name="email"
             control={control}

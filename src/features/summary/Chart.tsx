@@ -1,16 +1,45 @@
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Label,
-  ResponsiveContainer,
-} from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
+import Title from '../../components/Title';
 
-import Title from '../../components/common/Title';
-import Sales from '../../sample_data/Sales.json';
+const Sales = [
+  {
+    time: '00:00',
+    amount: 0
+  },
+  {
+    time: '03:00',
+    amount: 300
+  },
+  {
+    time: '06:00',
+    amount: 600
+  },
+  {
+    time: '09:00',
+    amount: 800
+  },
+  {
+    time: '12:00',
+    amount: 1500
+  },
+  {
+    time: '15:00',
+    amount: 2000
+  },
+  {
+    time: '18:00',
+    amount: 2400
+  },
+  {
+    time: '21:00',
+    amount: 2400
+  },
+  {
+    time: '24:00'
+  }
+];
 
 export default function Chart() {
   const theme = useTheme();
@@ -25,7 +54,7 @@ export default function Chart() {
             top: 16,
             right: 16,
             bottom: 0,
-            left: 24,
+            left: 24
           }}
         >
           <XAxis
@@ -33,17 +62,14 @@ export default function Chart() {
             stroke={theme.palette.text.secondary}
             style={theme.typography.body2}
           />
-          <YAxis
-            stroke={theme.palette.text.secondary}
-            style={theme.typography.body2}
-          >
+          <YAxis stroke={theme.palette.text.secondary} style={theme.typography.body2}>
             <Label
               angle={270}
               position="left"
               style={{
                 textAnchor: 'middle',
                 fill: theme.palette.text.primary,
-                ...theme.typography.body1,
+                ...theme.typography.body1
               }}
             >
               Sales ($)

@@ -10,11 +10,11 @@ import {
   Box,
   Typography,
   Container,
-  Paper,
+  Paper
 } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Copyright from '../../components/common/Copyright';
+import Copyright from '../../components/Copyright';
 import { useTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
@@ -28,7 +28,7 @@ interface IFormInput {
 
 const schema = Joi.object({
   email: Joi.string().required(),
-  password: Joi.string().min(6).max(16).required(),
+  password: Joi.string().min(6).max(16).required()
 }).required();
 
 export default function SignIn() {
@@ -37,9 +37,9 @@ export default function SignIn() {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<IFormInput>({
-    resolver: joiResolver(schema),
+    resolver: joiResolver(schema)
   });
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
@@ -51,10 +51,7 @@ export default function SignIn() {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Paper
-        className="flex flex-col items-center mt-24 shadow-xl"
-        sx={{ py: 2, borderRadius: 2 }}
-      >
+      <Paper className="flex flex-col items-center mt-24 shadow-xl" sx={{ py: 2, borderRadius: 2 }}>
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
@@ -106,12 +103,7 @@ export default function SignIn() {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            className="mt-4 mb-4"
-          >
+          <Button type="submit" fullWidth variant="contained" className="mt-4 mb-4">
             Sign In
           </Button>
           <Grid container>

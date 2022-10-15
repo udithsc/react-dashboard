@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import moment from 'moment';
-import { apiCallBegan } from './api';
+import { apiCallBegan } from '../../app/apiActions';
 
 const initialState = {
   list: [],
