@@ -1,15 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import authReducer from '../features/auth/authSlice';
 import userReducer from '../features/user/userSlice';
-import toast from './middleware/toast';
+import error from './middleware/error';
 import api from './middleware/api';
 
 const store = configureStore({
   reducer: {
-    cake: authReducer,
+    auth: authReducer,
     user: userReducer
   },
-  middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(), toast, api]
+  middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(), error, api]
 });
 
 export default store;
@@ -17,3 +17,10 @@ export default store;
 export type RootState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
+
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;

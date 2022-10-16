@@ -1,18 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { apiCallBegan } from '../../app/apiActions';
+import { apiCallBegan } from '../../app/actions';
+import { RootState } from '../../app/store';
 
-const initialState = {
-  isLoading: false,
+type User = {
+  id: number;
+  name: string;
+};
+
+type InitialState = {
+  loading: boolean;
+  user: User;
+  error: string;
+  accessToken: string;
+  refreshToken: string;
+};
+
+const initialState: InitialState = {
+  loading: false,
+  user: {
+    id: 0,
+    name: ''
+  },
+  error: '',
   accessToken: '',
-  refreshToken: '',
-  expires_in: 0,
-  user: {},
-  isLoggedIn: false,
-  notification: {
-    isOpen: false,
-    message: '',
-    type: ''
-  }
+  refreshToken: ''
 };
 
 const url = '/auth';
@@ -21,21 +32,18 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    loginRequested: (state) => {
-      state.isLoading = true;
+    apiPending: (state) => {
+      state.loading = true;
     },
 
-    loginRequestFailed: (state) => {
-      state.isLoading = false;
-      state.message = '';
+    apiFailed: (state) => {
+      state.loading = false;
     },
 
     loggedIn: (state, action) => {
-      state.isLoading = false;
-      state.isLoggedIn = true;
+      state.loading = false;
       state.accessToken = action.payload.accessToken;
-      // state.refreshToken = action.payload?.refreshToken;
-      state.notification = initialState.notification;
+      state.refreshToken = action.payload.refreshToken;
     },
 
     loggedOut: (state, action) => {
@@ -43,50 +51,29 @@ const authSlice = createSlice({
     },
 
     tokenRefreshed: (state, action) => {
-      state.isLoading = false;
+      state.loading = false;
       state.accessToken = action.payload.data.accessToken;
       state.refreshToken = action.payload.data.refreshToken;
-    },
-
-    showNotification: (state, action) => {
-      state.notification = {
-        isOpen: true,
-        message: action.payload.message,
-        type: action.payload.type
-      };
-    },
-
-    closeNotification: (state, action) => {
-      state.notification = initialState.notification;
     }
   }
 });
 
-export const {
-  loggedIn,
-  loggedOut,
-  loginRequested,
-  tokenRefreshed,
-  loginRequestFailed,
-  closeNotification,
-  showNotification
-} = authSlice.actions;
+export const { apiPending, apiFailed, loggedIn, loggedOut, tokenRefreshed } = authSlice.actions;
 
 export default authSlice.reducer;
 
 // Selectors
-export const selectUser = (state) => state.auth.user;
-export const selectAccessToken = (state) => state.auth.accessToken;
-export const selectDataStatus = (state) => state.auth.loading;
-export const selectNotification = (state) => state.auth.notification;
-export const selectLoginStatus = (state) => state.auth.isLoggedIn;
+export const selectUser = (state: RootState) => state.auth.user;
+export const selectAccessToken = (state: RootState) => state.auth.accessToken;
+export const selectDataStatus = (state: RootState) => state.auth.loading;
 
 // Action Creators
-export const login = (data) =>
+export const login = (data: any) =>
   apiCallBegan({
     url,
     method: 'post',
     data,
+    onStart: apiPending.type,
     onSuccess: loggedIn.type,
-    onError: loginRequestFailed.type
+    onError: apiFailed.type
   });

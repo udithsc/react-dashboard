@@ -6,7 +6,7 @@ import {
   DialogContent,
   DialogTitle,
   Stack,
-  TextField,
+  TextField
 } from '@mui/material';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
@@ -15,7 +15,7 @@ import { User } from './Users';
 
 const schema = Joi.object({
   email: Joi.string().required(),
-  password: Joi.string().min(6).max(16).required(),
+  password: Joi.string().min(6).max(16).required()
 }).required();
 
 export const UserForm: FC<{
@@ -28,12 +28,12 @@ export const UserForm: FC<{
     control,
     handleSubmit,
     formState: { errors },
-    reset,
+    reset
   } = useForm<User>({
     defaultValues: useMemo(() => {
       return recordForEdit;
     }, [recordForEdit]),
-    resolver: joiResolver(schema),
+    resolver: joiResolver(schema)
   });
 
   const submit: SubmitHandler<User> = (data) => {

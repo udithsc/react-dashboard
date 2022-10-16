@@ -30,15 +30,29 @@
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
     "react-scripts": "^5.0.1",
+    "react-toastify": "^9.0.8",
     "recharts": "^2.1.15",
     "tailwindcss": "^3.1.8",
     "typescript": "^4.8.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start:dev": "cp ./.env.dev .env && react-scripts start",
+    "start:test": "cp ./.env.test .env && react-scripts start",
+    "start:prod": "cp ./.env.prod .env && react-scripts start",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
+    "build:dev": "cp ./.env.dev .env && GENERATE_SOURCEMAP=false react-scripts build",
+    "build:test": "cp ./.env.test .env && GENERATE_SOURCEMAP=false react-scripts build",
+    "build:prod": "cp ./.env.prod .env && GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "e2e-test": "cypress open",
+    "lint": "eslint 'src/**/*.{js,jsx}' && stylelint src/**/*.css",
+    "fix": "eslint 'src/**/*.{js,jsx}' --fix && stylelint src/**/*.css --fix",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config .prettierrc.json ",
+    "lint-staged": "lint-staged --config .lintstagedrc.json",
+    "prepare": "husky install",
+    "coverage": "react-scripts test --coverage"
   },
   "browserslist": {
     "production": [
@@ -66,6 +80,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
     "stylelint": "^14.14.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^29.0.0"

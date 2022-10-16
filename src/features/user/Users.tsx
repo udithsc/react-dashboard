@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, IconButton, Paper, Tooltip } from '@mui/material';
 import { UserForm } from './UserForm';
 import { Delete, Edit } from '@mui/icons-material';
-import { loadUsers } from './users';
+import { loadUsers } from './userSlice';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 type UserApiResponse = {
   data: Array<User>;
@@ -31,7 +32,7 @@ const initialValues = {
 };
 
 const Example: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [data, setData] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
