@@ -1,7 +1,8 @@
 import React from 'react';
+import { Box } from '@mui/material';
 
 function NotFound() {
-  return <div>NotFound</div>;
+  return <Box>NotFound</Box>;
 }
 
 export default NotFound;

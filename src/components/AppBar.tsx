@@ -4,14 +4,14 @@ import { Toolbar, Typography, IconButton, Badge } from '@mui/material';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import MenuIcon from '@mui/icons-material/Menu';
 import { FiBell, FiUser } from 'react-icons/fi';
-import { DRAWER_WIDTH } from '../constants/template';
 import { useNavigate } from 'react-router-dom';
+import { DRAWER_WIDTH } from '../constants/template';
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
 }
 
-function AppBar({ open, toggleDrawer }: { open?: boolean; toggleDrawer: () => void }) {
+function AppBar({ open, toggleDrawer }: { open: boolean; toggleDrawer: () => void }) {
   const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open'
   })<AppBarProps>(({ theme, open }) => ({

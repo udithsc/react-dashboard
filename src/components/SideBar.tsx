@@ -8,7 +8,7 @@ import { DRAWER_WIDTH } from '../constants/template';
 import ListItems from './listItems';
 
 type SideBarProps = {
-  open?: boolean;
+  open: boolean;
   toggleDrawer: () => void;
 };
 
@@ -51,7 +51,7 @@ function SideBar({ open, toggleDrawer }: SideBarProps) {
         className="flex items-center justify-end px-1"
         sx={{ backgroundColor: 'primary.main' }}
       >
-        <img src="/logo-1.png" height={'45%'} />
+        <img src="/logo-1.png" alt="logo" height="45%" />
         <IconButton onClick={toggleDrawer}>
           <ChevronLeftIcon />
         </IconButton>

@@ -9,8 +9,7 @@ function Copyright() {
       <Link color="inherit" href={COMPANY_WEBSITE}>
         {COMPANY_NAME}
       </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
+      {new Date().getFullYear()}.
     </Typography>
   );
 }

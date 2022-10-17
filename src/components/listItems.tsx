@@ -58,13 +58,13 @@ export default function ListItems({ type }: ListItemProps) {
   const Menus = type === 'main' ? MainMenus : SubMenus;
 
   return (
-    <React.Fragment>
+    <>
       {Menus.map((menu) => (
         <ListItemButton key={menu.route} onClick={() => navigate(menu.route)}>
           <ListItemIcon sx={{ fontSize: 20 }}>{menu.icon}</ListItemIcon>
           <ListItemText primary={menu.label} />
         </ListItemButton>
       ))}
-    </React.Fragment>
+    </>
   );
 }
