@@ -37,9 +37,7 @@ export default function ForgotPassword() {
     resolver: joiResolver(schema)
   });
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
-  };
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {};
 
   return (
     <Container component="main" maxWidth="xs">

@@ -27,11 +27,7 @@ export default function ResetPassword() {
     resolver: joiResolver(schema)
   });
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
-  };
-
-  console.log(errors);
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {};
 
   return (
     <Container component="main" maxWidth="xs">

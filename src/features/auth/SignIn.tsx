@@ -41,7 +41,6 @@ export default function SignIn() {
   });
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
     navigate('/');
   };
 
