@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTheme } from '@mui/material/styles';
 import { Box, Toolbar, Container } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import AppBar from './AppBar';
@@ -7,8 +6,7 @@ import SideBar from './SideBar';
 
 function Dashboard() {
   const [open, setOpen] = React.useState(true);
-  const toggleDrawer = () => setOpen(!open);
-  const theme = useTheme();
+  const toggleDrawer = () => setOpen((state) => !state);
 
   return (
     <Box className="flex">

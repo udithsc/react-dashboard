@@ -4,7 +4,6 @@ import { Toolbar, Typography, IconButton, Badge } from '@mui/material';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import MenuIcon from '@mui/icons-material/Menu';
 import { FiBell, FiUser } from 'react-icons/fi';
-
 import { DRAWER_WIDTH } from '../constants/template';
 import { useNavigate } from 'react-router-dom';
 

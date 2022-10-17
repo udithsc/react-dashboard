@@ -1,6 +1,5 @@
 import React from 'react';
 import { Grid, Paper } from '@mui/material';
-
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';

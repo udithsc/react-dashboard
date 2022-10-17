@@ -5,7 +5,6 @@ import { CssBaseline } from '@mui/material';
 import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
-
 import store from './app/store';
 import './index.css';
 import App from './App';

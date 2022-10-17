@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import {
   Button,
   Dialog,
@@ -18,7 +18,7 @@ const schema = Joi.object({
   password: Joi.string().min(6).max(16).required()
 }).required();
 
-export const UserForm: FC<{
+export default const UserForm: FC<{
   recordForEdit: User;
   onClose: () => void;
   onSubmit: (values: User) => void;

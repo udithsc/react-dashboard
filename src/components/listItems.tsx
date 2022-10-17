@@ -17,17 +17,17 @@ const MainMenus = [
   {
     label: 'Orders',
     icon: <FiBook />,
-    route: '/'
+    route: '/orders'
   },
   {
     label: 'Reports',
     icon: <FiChrome />,
-    route: '/'
+    route: '/reports'
   },
   {
     label: 'Integrations',
     icon: <FiFileMinus />,
-    route: '/'
+    route: '/integrations'
   }
 ];
 
@@ -35,21 +35,25 @@ const SubMenus = [
   {
     label: 'Current month',
     icon: <FiMail />,
-    route: '/'
+    route: '/current-month'
   },
   {
     label: 'Last quarter',
     icon: <FiSlack />,
-    route: '/'
+    route: '/last-quarter'
   },
   {
     label: 'Year-end sale',
     icon: <FiSliders />,
-    route: '/'
+    route: '/year-end-sale'
   }
 ];
 
-export default function ListItems({ type }: { type: string }) {
+type ListItemProps = {
+  type: string;
+};
+
+export default function ListItems({ type }: ListItemProps) {
   const navigate = useNavigate();
   const Menus = type === 'main' ? MainMenus : SubMenus;
 

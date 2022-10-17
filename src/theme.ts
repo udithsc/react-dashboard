@@ -1,6 +1,6 @@
-const rootElement = document.getElementById('root');
-import { blue, lightGreen } from '@mui/material/colors';
 import { createTheme, experimental_sx as sx } from '@mui/material/styles';
+
+const rootElement = document.getElementById('root');
 
 // All `Portal`-related components need to have the the main app wrapper element as a container
 // so that the are in the subtree under the element used in the `important` option of the Tailwind's config.
@@ -11,10 +11,10 @@ const themeOptions = {
     },
     secondary: {
       main: '#1fb39f'
+    },
+    background: {
+      default: '#fbf5f6'
     }
-    // background: {
-    //   default: '#fbf5f6'
-    // }
   },
   components: {
     MuiPopover: {

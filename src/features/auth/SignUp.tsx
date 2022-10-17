@@ -13,10 +13,10 @@ import {
   Paper
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Copyright from '../../components/Copyright';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
 import Joi from 'joi';
+import Copyright from '../../components/Copyright';
 
 interface IFormInput {
   firstName: string;

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import * as actions from '../actions';
-import { loggedOut } from '../../features/auth/authSlice';
 
 const api =
   ({ dispatch }: any) =>
@@ -24,9 +23,9 @@ const api =
     } catch (e) {
       let error = '';
       if (typeof e === 'string') {
-        error = e.toUpperCase(); // works, `e` narrowed to string
+        error = e.toUpperCase();
       } else if (e instanceof Error) {
-        error = e.message; // works, `e` narrowed to Error
+        error = e.message;
       }
 
       dispatch(actions.apiCallFailed(error)); // General

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { apiCallBegan } from '../../app/actions';
-import { RootState } from '../../app/store';
+import type { RootState } from '../../app/store';
 
 type User = {
   id: number;

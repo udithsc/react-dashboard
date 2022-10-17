@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import ForgotPassword from './features/auth/ForgotPassword';
 import Home from './features/summary/Home';
+import Users from './features/user/Users';
 import ResetPassword from './features/auth/ResetPassword';
 import SignIn from './features/auth/SignIn';
 import SignUp from './features/auth/SignUp';
@@ -13,6 +14,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Dashboard />}>
         <Route index element={<Home />} />
+        <Route path="/users" element={<Users />} />
         <Route path="/*" element={<NotFound />} />
       </Route>
       <Route path="/resetpassword" element={<ResetPassword />} />

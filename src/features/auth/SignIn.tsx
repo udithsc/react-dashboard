@@ -12,14 +12,12 @@ import {
   Container,
   Paper
 } from '@mui/material';
-import { grey } from '@mui/material/colors';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Copyright from '../../components/Copyright';
-import { useTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
 import Joi from 'joi';
+import Copyright from '../../components/Copyright';
 
 interface IFormInput {
   email: string;

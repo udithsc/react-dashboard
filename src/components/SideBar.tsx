@@ -7,7 +7,12 @@ import Copyright from './Copyright';
 import { DRAWER_WIDTH } from '../constants/template';
 import ListItems from './listItems';
 
-function SideBar({ open, toggleDrawer }: { open?: boolean; toggleDrawer: () => void }) {
+type SideBarProps = {
+  open?: boolean;
+  toggleDrawer: () => void;
+};
+
+function SideBar({ open, toggleDrawer }: SideBarProps) {
   const Drawer = styled(MuiDrawer, {
     shouldForwardProp: (prop) => prop !== 'open'
   })(({ theme, open }) => ({
