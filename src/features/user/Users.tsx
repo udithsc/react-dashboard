@@ -1,9 +1,9 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import MaterialReactTable, { MRT_ColumnDef, MRT_Row } from 'material-react-table';
 import type { ColumnFiltersState, PaginationState, SortingState } from '@tanstack/react-table';
 import { Box, Button, IconButton, Tooltip } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
-import { UserForm } from './UserForm';
+import UserForm from './UserForm';
 import { loadUsers } from './userSlice';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
@@ -23,7 +23,7 @@ const initialValues = {
   phone: ''
 };
 
-const Example: FC = () => {
+export default function Example() {
   const dispatch = useAppDispatch();
   const [data, setData] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -97,7 +97,7 @@ const Example: FC = () => {
         }}
         enableDensityToggle={false}
         enableHiding={false}
-        enableRowActions={true}
+        enableRowActions
         renderTopToolbarCustomActions={() => (
           <Button onClick={() => setCreateModalOpen(true)} variant="contained">
             Create New User
@@ -143,6 +143,4 @@ const Example: FC = () => {
       />
     </>
   );
-};
-
-export default Example;
+}

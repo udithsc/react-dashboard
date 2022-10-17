@@ -11,19 +11,21 @@ import {
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
 import Joi from 'joi';
-import { User } from './Users';
+import type { User } from './Users';
 
 const schema = Joi.object({
   email: Joi.string().required(),
   password: Joi.string().min(6).max(16).required()
 }).required();
 
-export default const UserForm: FC<{
-  recordForEdit: User;
+type UserFormProps = {
+  open: boolean;
   onClose: () => void;
   onSubmit: (values: User) => void;
-  open: boolean;
-}> = ({ open, onClose, onSubmit, recordForEdit }) => {
+  recordForEdit: User;
+};
+
+function UserForm({ open, onClose, onSubmit, recordForEdit }: UserFormProps) {
   const {
     control,
     handleSubmit,
@@ -125,4 +127,6 @@ export default const UserForm: FC<{
       </DialogActions>
     </Dialog>
   );
-};
+}
+
+export default UserForm;
