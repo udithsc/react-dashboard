@@ -75,7 +75,7 @@ export default function Orders() {
           ))}
         </TableBody>
       </Table>
-      <Link className="mt-6" color="primary" href="#" onClick={preventDefault}>
+      <Link className="mt-6" color="primary" href="/" onClick={preventDefault}>
         See more orders
       </Link>
     </>

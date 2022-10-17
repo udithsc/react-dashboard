@@ -27,7 +27,7 @@
     "no-param-reassign": "off",
     "react/jsx-filename-extension": "off",
     "no-console": "warn",
-    "react/jsx-props-no-spreading": "warn",
+    "react/jsx-props-no-spreading": "off",
     "@typescript-eslint/no-shadow": "warn",
     "react/prop-types": "warn",
     "consistent-return": "warn"

@@ -45,8 +45,6 @@ export default function SignIn() {
     navigate('/');
   };
 
-  console.log(errors);
-
   return (
     <Container component="main" maxWidth="xs">
       <Paper className="flex flex-col items-center mt-24 shadow-xl" sx={{ py: 2, borderRadius: 2 }}>
@@ -112,7 +110,7 @@ export default function SignIn() {
             </Grid>
             <Grid item>
               <Link href="/signup" variant="body2">
-                {"Don't have an account? Sign Up"}
+                Don&apos;t have an account? Sign Up
               </Link>
             </Grid>
           </Grid>
